@@ -1,42 +1,69 @@
 $(document).ready(function() {
-
-// Questions: If I set a value for each hour and I try to call the value like this console.log($("#time-9").val); it doesn't work, comes up blank or undefined, works when I try on calculator
-// Question: How do I make the text showing what hour on the planner be more responsive to stay inside its column?
-
-
-// Global variables
-var currentHour = (moment().hour());
-
-
-// today's date shown at the top of the page
-$("#currentDay").text(moment().format("dddd, MMMM Do"));
-
-// on-click function for save button
-$(".saveBtn").on("click", function() {
-
-});
-
-
-// function to initialize dayplanner with correct colorcoding based on the hour
-// this is where I wanted to use value not class, but couldn't get it to work 
-function initializeDayPlanner(){
-    if (currentHour > $(".planningHour").val())
-    {
-        $(".planningHour").addClass("past");
+    // Questions: If I set a value for each hour and I try to call the value like this console.log($("#time-9").val); it doesn't work, comes up blank or undefined, works when I try on calculator
+    // Question: How do I make the text showing what hour on the planner be more responsive to stay inside its column?
+  
+    // Global variables
+    var currentHour = moment().hour();
+    console.log(currentHour);
+    console.log(typeof(currentHour));
+    var planningHourValue = $(".planningHour");
+    console.log(planningHourValue);
+  
+    // today's date shown at the top of the page
+    $("#currentDay").text(moment().format("dddd, MMMM Do"));
+  
+    // on-click function for save button
+    $(".saveBtn").on("click", function() {});
+  
+    // function to initialize dayplanner with correct colorcoding based on the hour
+    // this is where I wanted to use value not class, but couldn't get it to work
+  
+    console.log("planningHourValue.length", planningHourValue.length);
+    for (var i = 0; i < planningHourValue.length; i++) {
+      console.log("planningHourValue:", planningHourValue[i]);
+      console.log(
+        "planningHourValue.getAttribute('data-value')",
+        planningHourValue[i].getAttribute("data-value")
+      );
+        var hourValue = parseInt(planningHourValue[i].getAttribute("data-value"));
+      if (currentHour > hourValue) {
+      //   $(".planningHour").addClass("past");
+        var pastValue = planningHourValue[i].setAttribute("class", "col-10 planningHour past");
+      }
+      else if (currentHour < hourValue) {
+      //   $(".planningHour").addClass("future");
+        var pastValue = planningHourValue[i].setAttribute("class", "col-10 planningHour future");
+      }
+      else if (currentHour === hourValue) {
+      //   $(".planningHour").addClass("present");
+      var pastValue = planningHourValue[i].setAttribute("class", "col-10 planningHour present");
+      }
     }
-    else if (currentHour < $(".planningHour").val())
-    {
-        $(".planningHour").addClass("future");
-    }
-    else if (currentHour === $(".planningHour").val())
-    {
-        $(".planningHour").addClass("present");
-    };
-};
-
-// calling the function 
-initializeDayPlanner();
-
-});
-
-
+  });
+  
+  /*
+       <body>
+      <div class="hours" data-value="1">Hour 1</div>
+      <div class="hours" data-value="2">Hour 2</div>
+      <div class="hours" data-value="3">Hour 3</div>
+      <div class="hours" data-value="4">Hour 4</div>
+  ​
+      <div>dynamic element place holder</div>
+  ​
+      <script>
+        $(document).ready(function() {
+          var hoursArr = $(".hours");
+  
+          console.log("hoursArr.length", hoursArr.length);
+          for (var i = 0; i < hoursArr.length; i++) {
+            console.log("hoursArr:", hoursArr[i]);
+            console.log(
+              "hoursArr.getAttribute('data-value')",
+              hoursArr[i].getAttribute("data-value")
+            );
+          }
+        });
+      </script>
+    </body>
+    */
+  
