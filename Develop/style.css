@@ -31,15 +31,18 @@ textarea{
 }
 
 .row {
-  white-space: pre-wrap;
+  
   height: 80px;
-  border-top: 1px solid white;;
+  border-top: 1px solid white;
 }
 
 .hour {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  text-align: right;
+  padding-top: 10px;
+  border-right: 1px solid black;
 }
 
 .past {
