@@ -17,25 +17,26 @@ $(".saveBtn").on("click", function() {
 });
 
 
-
-
 // function to initialize dayplanner with correct colorcoding based on the hour
-/*
+// this is where I wanted to use value not class, but couldn't get it to work 
 function initializeDayPlanner(){
-    if (currentHour > valueorID??)
+    if (currentHour > $(".planningHour").val())
     {
-        print whatever color for those rows 
-    };
-    else if (currentHour < valueorID??)
+        $(".planningHour").addClass("past");
+    }
+    else if (currentHour < $(".planningHour").val())
     {
-        print whatever color
-    };
-    else if (currentHour === valueorID)
+        $(".planningHour").addClass("future");
+    }
+    else if (currentHour === $(".planningHour").val())
     {
-        print whatever color 
+        $(".planningHour").addClass("present");
     };
 };
-*/
+
+// calling the function 
+initializeDayPlanner();
 
 });
+
 
