@@ -69,6 +69,14 @@ textarea{
 }
 
 .saveBtn i:hover {
-  font-size: 20px;
+  font-size: 30px;
   transition: all .3s ease-in-out;
+}
+
+.fas {
+  font-size: 15px;
+  width: 100%;
+  margin-top: 50%;
+  margin-bottom: 50%;
+  height: 100%;
 }
