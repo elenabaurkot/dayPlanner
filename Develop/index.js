@@ -10,11 +10,12 @@ $(document).ready(function() {
   // today's date shown at the top of the page
   $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
-
   // on-click function for save button to store what is entered to the planner
-  $(".saveBtn").on("click", function() {
+  $(".saveBtn").click(function() {
     event.preventDefault();
-    var plannerText = $("#textarea").value; 
+    console.log($("textarea").val());
+    console.log($(".saveBtn").value;
+    var plannerText = $("#textarea").val(); 
     // Return from function early if submitted todoText is blank
     if (plannerText === "") {
       return;
@@ -26,6 +27,8 @@ $(document).ready(function() {
   });
 
   
+
+
   // get day planner events from local storage
   // parson JSON string to an object
   function init() {
