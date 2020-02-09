@@ -7,23 +7,23 @@ $(document).ready(function() {
   // call function to show saved planner events from local storage
   init();
 
+
   // today's date shown at the top of the page
   $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
 
-  // on-click function for save button to store what is entered to the planner
-  $(".saveBtn").on("click", function() {
-    event.preventDefault();
-    var plannerText = $("#textarea").value; 
-    // Return from function early if submitted todoText is blank
-    if (plannerText === "") {
-      return;
-    }
-    //push new event into savedEvents array
-      savedEvents.push({plannerEvents:plannerText});
-      // store updated events in local storage
-      localStorage.setItem("plannerEvents", JSON.stringify(savedEvents));
+  // planner events persist when local storage is cleared or when edited, not sure how to make it so they go away if planner page is blank--> think you should try splicing
+  // On click function for save button
+  $(".saveBtn").on("click", function(event) {
+    var index = $(this).attr("value");
+    var plannerText = $("#text-" + index).val();
+    //saving events to local storage
+    console.log("index: " + index + "value: " + plannerText);
+    savedEvents.push({ indexHour: index, textValue: plannerText });
+    // store updated events in local storage
+    localStorage.setItem("plannerEvents", JSON.stringify(savedEvents));
   });
+
 
   
   // get day planner events from local storage
@@ -34,7 +34,13 @@ $(document).ready(function() {
     if (getEvents !== null) {
       savedEvents = getEvents;
     }
+    // push saved events back onto page by appending if the value of the text area is equal to the index hour of the array object
+    var textAreaValue = $("textarea").attr("value");
+    $.each(savedEvents, function(i, item) {
+      $("#text-" + item.indexHour).append(item.textValue);
+    });
   }
+
 
   // initialize dayplanner with correct colorcoding based on the hour
   for (var i = 0; i < planningHourValue.length; i++) {
@@ -43,17 +49,21 @@ $(document).ready(function() {
       "planningHourValue.getAttribute('data-value')",
       planningHourValue[i].getAttribute("data-value")
     );
+    // data-value of the row
     var hourValue = parseInt(planningHourValue[i].getAttribute("data-value"));
+    // if the current hour is greater than the row hour, row should be grey
     if (currentHour > hourValue) {
       var pastValue = planningHourValue[i].setAttribute(
         "class",
         "col-10 planningHour past"
       );
+      // if the current hour is less than the row hour, row should be green
     } else if (currentHour < hourValue) {
       var futureValue = planningHourValue[i].setAttribute(
         "class",
         "col-10 planningHour future"
       );
+      // if the current hour is equal to the row hour, row should be red
     } else if (currentHour === hourValue) {
       var presentValue = planningHourValue[i].setAttribute(
         "class",
