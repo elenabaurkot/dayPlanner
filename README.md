@@ -1,6 +1,8 @@
 # Day Planner
 The Day Planner is a website that allows you to keep track of your work day. You can store and update events between the hours of 9am and 5pm to make sure you don't miss any important meetings or phone calls. The day planner shows the current hour in red, the upcoming hours in green and past hours in gray. This is the link to the site: https://elenabaurkot.github.io/dayPlanner/
 
+<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Google_Images_2015_logo.svg/1200px-Google_Images_2015_logo.svg.png'/>
+
 ## Table of Contents
 <ol>
     <li><a href="#usage">Usage</a></li>
